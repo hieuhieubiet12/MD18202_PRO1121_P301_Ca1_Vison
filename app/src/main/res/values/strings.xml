@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">MD18202_PRO1121_P301_Ca1_Vison</string>
+    <string name="app_name">Vison</string>
+
+    <string name="home">Trang chủ</string>
+    <string name="share">Chia sẻ</string>
+    <string name="category">Danh mục sp</string>
+    <string name="new_product">SP Mới</string>
+    <string name="person">Tôi</string>
 </resources>
