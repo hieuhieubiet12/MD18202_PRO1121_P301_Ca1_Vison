@@ -53,9 +53,19 @@ public class DBhelper extends SQLiteOpenHelper {
                 "user_name  text not null references user (user_name), " +
                 "creation_time  date not null," +
                 "quantity_order integer not null," +
-                "address_order text not null," +
-                "status_order integer not null)";
+                "address_order text," +
+                "status_order integer default 0)";
         db.execSQL(TB_Orders);
+
+        //Bảng đơn hàng chi tiết của user
+        String TB_Order_detail = "create table order_detail (id_order_detail integer primary key autoincrement, " +
+                "id_product integer not null references product(id_product), " +
+                "id_orders  integer not null references orders(id_orders)," +
+                "id_voucher integer not null references voucher(id_voucher)," +
+                "id_voucher_user integer not null references voucher_user(id_voucher_user)," +
+                "quanity_order_detail integer not null," +
+                "payment_method text)";
+        db.execSQL(TB_Order_detail);
 
         //Bảng voucher chung
         String TB_Voucher = "create table voucher (id_voucher integer primary key autoincrement," +
@@ -72,23 +82,13 @@ public class DBhelper extends SQLiteOpenHelper {
                 "status_voucher_user integer default 0)";
         db.execSQL(TB_Voucher_user);
 
-        //Bảng đơn hàng chi tiết của user
-        String TB_Order_detail = "create table order_detail (id_order_detail integer primary key autoincrement, " +
-                "id_product integer not null references product(id_product), " +
-                "id_orders  integer not null references orders(id_orders)," +
-                "id_voucher integer not null references voucher(id_voucher)," +
-                "id_voucher_user integer not null references voucher_user(id_voucher_user)," +
-                "quanity_order_detail integer not null," +
-                "payment_method text)";
-        db.execSQL(TB_Order_detail);
-
         //Bảng đơn nạp.
         String TB_Recharge = "create table recharge(id_recharge integer primary key autoincrement," +
                 "user_name text not null references user(user_name)," +
                 "date_recharge text not null," +
                 "recharge_amount integer not null," +
-                "receipt_image blod not null," +
-                "status_recharge integer default 1)";
+                "receipt_image blod," +
+                "status_recharge integer default 0)";
         db.execSQL(TB_Recharge);
 
         //Bảng đơn rút
@@ -96,7 +96,7 @@ public class DBhelper extends SQLiteOpenHelper {
                 "user_name text not null references user(user_name)," +
                 "date_withdraw text not null," +
                 "withdraw_amount integer not null," +
-                "status_withdraw integer default 1)";
+                "status_withdraw integer default 0)";
         db.execSQL(TB_Withdraw);
 
         //Bảng Đánh giá
