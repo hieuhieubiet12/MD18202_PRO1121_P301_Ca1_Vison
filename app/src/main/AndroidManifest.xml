@@ -18,6 +18,12 @@
         android:theme="@style/Theme.MD18202_PRO1121_P301_Ca1_Vison"
         tools:targetApi="31">
         <activity
+            android:name=".ProductDetail_Addmin"
+            android:exported="false" />
+        <activity
+            android:name=".Product_add"
+            android:exported="false" />
+        <activity
             android:name=".ReachargeDetail"
             android:exported="false" />
         <activity

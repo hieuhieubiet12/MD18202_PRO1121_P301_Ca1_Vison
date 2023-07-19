@@ -19,20 +19,19 @@ public class DBhelper extends SQLiteOpenHelper {
         //Bảng sản phẩm.
         String TB_Product="CREATE TABLE product (\n" +
                 "  id_product INTEGER PRIMARY KEY autoincrement,\n" +
-                "  id_typeProduct INTEGER,\n" +
-                "  name_product TEXT,\n" +
-                "  price TEXT,\n" +
+                "  id_typeProduct INTEGER references product_type(id_type_product),\n" +
+                "  name_product TEXT not null,\n" +
+                "  price double not null,\n" +
                 "  imge_product BLOB,\n" +
-                "  quantity_product INTEGER,\n" +
-                "  status_product INTEGER,\n" +
-                "  describe_product TEXT,\n" +
-                "  id_type_product integer  references product_type(id_type_product))";
+                "  quantity_product INTEGER ,\n" +
+                "  status_product INTEGER default 0,\n" +
+                "  describe_product TEXT)";
         db.execSQL(TB_Product);
 
         //Bảng loại sản phẩm.
         String TB_Product_Type = "create table product_type (id_type_product integer primary key autoincrement, " +
                 "name_type_pro text not null, " +
-                "image_type_pro blob)";
+                "image_type_pro blob) ";
         db.execSQL(TB_Product_Type);
 
         //Bảng người dùng (user)
@@ -43,7 +42,7 @@ public class DBhelper extends SQLiteOpenHelper {
                 "date text," +
                 "avatar blob," +
                 "address text," +
-                "money integer," +
+                "money double default 0.0," +
                 "point integer," +
                 "role integer default 1)";
         db.execSQL(TB_User);
@@ -110,6 +109,8 @@ public class DBhelper extends SQLiteOpenHelper {
 
         String INSERT_ADMIN = ("insert into user(user_name,name,password,role) values ('admin','Admin','123456',0)");
         db.execSQL(INSERT_ADMIN);
+
+
     }
 
     @Override
