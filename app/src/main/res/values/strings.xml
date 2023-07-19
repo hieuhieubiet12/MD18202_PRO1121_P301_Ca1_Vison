@@ -6,4 +6,6 @@
     <string name="category">Danh mục sp</string>
     <string name="new_product">SP Mới</string>
     <string name="person">Tôi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
